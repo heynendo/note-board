@@ -2,6 +2,7 @@ import express from "express"
 //const express = require('express') means the same thing
 import cors from "cors"
 import dotenv from "dotenv"
+import path from "path"
 
 import notesRoutes from "./routes/notesRoutes.js"
 import { connectDB } from "./config/db.js"
@@ -12,11 +13,13 @@ dotenv.config()
 //1. setup app server and port
 const app = express()
 const port = process.env.PORT
+const __dirname = path.resolve()
 
-
-app.use(cors({
-    origin: "http://localhost:5173"
-}))
+if(process.env.NODE_ENV !== "production"){
+    app.use(cors({
+        origin: "http://localhost:5173"
+    }))
+}
 // middleware - will parse JSON bodies (req/res.body)
 //could not get title and content for notesController without this 
 app.use(express.json())
@@ -32,6 +35,14 @@ app.use((req,res,next) =>{
 app.use("/api/notes", notesRoutes)
 //ex: app.use("/api/emails", emailRoutes)
 //ex: app.use("/api/payments", paymentsRoutes)
+
+if(process.env.NODE_ENV === "production"){
+    app.use(express.static(path.join(__dirname, "../frontend/dist")))
+
+    app.get("*", (req,res) => {
+        res.sendFile(path.join(__dirname,"../frontend","dist","index.html"))
+    })
+}
 
 // if we connect to DB, then we can run server
 connectDB().then(() => {
