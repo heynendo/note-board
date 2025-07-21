@@ -1,0 +1,258 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: 'Playfair Display', serif;
+}
+body > div{
+  background-color: #000000EA;
+  min-height: 100vh;
+}
+button{
+  font-family: 'Playfair Display', serif;
+  cursor: pointer;
+}
+header{
+  background-color: #1D1D1D;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 15vw;
+  border-bottom: 1px solid black;
+}
+.nav > h1{
+  font-style: normal;
+  font-weight: 700;
+  font-size: 60px;
+  align-items: center;
+  text-align: center;
+  color: rgba(239, 127, 0, 0.75);
+  width: 100vw;
+  cursor: default;
+  text-transform: uppercase;
+}
+.nav > a{
+  border-radius: 100%;
+  background-color: rgba(239, 127, 0, 0.75);
+  aspect-ratio: 1/1;
+  height: 60px;
+  border: none;
+  transition: 0.2s;
+  cursor: pointer;
+  text-decoration: none;
+  color: black;
+  text-align: center;
+  align-self: center;
+}
+.nav > a:hover{
+  background-color: rgba(239, 127, 0, 1);
+  color: white;
+}
+.nav a > img{
+  margin: 15px;
+}
+
+.note-list{
+  display: block;
+  justify-self: center;
+}
+.note{
+  width: 50vw;
+  max-width: 800px;
+  min-width: 350px;
+  margin: 2.5vw;
+  background: rgba(239, 127, 0, 0.1);
+  border: 1px solid rgba(239, 127, 0, 0.75);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 50px;
+  color: white;
+  transition: 0.5s;
+}
+.note > h1{
+  font-size: 1.5em;
+  text-align: center;
+  padding: 0 2vw;
+  padding-top: 10px;
+  cursor: default;
+  text-transform: uppercase;
+}
+.note > p{
+  font-size: 0.8em;
+  padding: 0px 2vw;
+  text-align: center;
+  letter-spacing: 5px;
+}
+.note.toggle > p{
+  text-align: start;
+  letter-spacing: 0;
+  padding: 10px 2vw;
+}
+.note > div{
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  justify-self: center;
+  margin: 15px;
+}
+.note div > .delete{
+  height: 30px;
+  aspect-ratio: 1;
+  background-color: #EF000070;
+  border-radius: 100%;
+  border: none;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.note div > .delete:hover{
+  background-color: #EF0000A0;
+}
+.note div .delete > img{
+  transform: rotate(45deg);
+  height: 20px;
+  aspect-ratio: 1;
+  margin-top: 2.5px;
+}
+.note div > a{
+  font-size: 1em;
+  width: 125px;
+  height: 30px;
+  border: 1px solid #FFFFFF;
+  border-radius: 50px;
+  color: white;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  transition: 0.2s;
+}
+.note div > a:hover{
+  background-color: #FFFFFF10;
+}
+.note div > .dropdown{
+  font-family: 'Playfair Display', serif;
+  height: 30px;
+  font-weight: 400;
+  font-size: 60px;
+  line-height: 100px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #FFFFFFA0;
+  transition: 0.2s;
+  text-transform: uppercase;
+  transform: rotate(360deg);
+}
+.note div > .dropdown:hover{
+  color: #FFFFFF;
+  transform: rotate(180deg);
+}
+.note.toggle div > .dropdown{
+  transform: rotate(180deg);
+}
+.note.toggle div > .dropdown:hover{
+  transform: rotate(360deg);
+}
+.note.toggle > p{
+  max-height: 70vh;
+}
+
+
+
+.rate-limit{
+  width: 70vw;
+  max-width: 1200px;
+  justify-self: center;
+  border: 1px solid #e05a0079;
+  background-color: #e05a002c;
+  border-radius: 50px;
+  margin: 50px;
+  text-align: center;
+  cursor: default;
+}
+.rate-limit > h1{
+  padding: 15px;
+  color: white;
+}
+.rate-limit > p{
+  padding: 25px;
+  color: white;
+}
+
+
+header > .back{
+  text-decoration: none;
+  color: rgba(239, 127, 0, 0.75);
+  font-size: 2em;
+  transition: 0.2s;
+}
+header > .back:hover{
+  color: rgba(239, 127, 0, 1);
+}
+.create-note{
+  justify-self: center;
+}
+.create-note > form{
+  display: grid;
+  justify-content: center;
+  width: 70vw;
+  max-width: 1000px;
+  background: rgba(239, 127, 0, 0.1);
+  border: 1px solid rgba(239, 127, 0, 0.75);
+  border-radius: 50px;
+  color: white;
+  text-align: center;
+  margin: 50px;
+}
+.create-note form > input,textarea{
+  font-family: 'Playfair Display', serif;
+  border: none;
+  background: none;
+  color: white;
+  padding: 25px;
+}
+.create-note form > input,textarea:focus{
+  outline: none;
+  border: none;
+}
+.create-note form > input::placeholder,textarea::placeholder{
+  color: #FFFFFFA0;
+  transition: 0.2s;
+}
+.create-note form > input:hover::placeholder,textarea:hover::placeholder{
+  color: #FFFFFF;
+}
+.create-note form > .title{
+  font-size: 2em;
+  text-align: center;
+  height: 50px;
+  border-bottom: 1px white solid;
+  width: 50vw;
+  max-width: 800px;
+  justify-self: center;
+}
+.create-note form > .title:focus{
+  border-bottom: 1px white solid;
+}
+.create-note form > .content{
+  min-height: 25vh;
+  resize: none;
+}
+.create-note form > button{
+  justify-self: center;
+  background: none;
+  border: 1px solid white;
+  border-radius: 50px;
+  color: white;
+  width: 40vw;
+  margin: 25px;
+  height: 50px;
+  transition: 0.2s;
+}
+.create-note form > button:hover{
+  background-color: #FFFFFF10;
+}
