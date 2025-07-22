@@ -15,7 +15,7 @@ const NotePage = () => {
     useEffect(() => {
         const getNote = async () => {
             try {
-                const response = await fetch(`http://localhost:3000/api/notes/${id}`)
+                const response = await fetch(`${import.meta.env.VITE_API_URL}/api/notes/${id}`)
                 if (response.ok) {
                     const data = await response.json()
                     setNote({ title: data.title, content: data.content })

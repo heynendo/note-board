@@ -7,7 +7,7 @@ const NoteItem = ({note, onDelete}) => {
 
     const deleteNote = async () => {
         try {
-            const response = await fetch(`http://localhost:3000/api/notes/${note._id}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/notes/${note._id}`, {
                 method: 'DELETE',
             });
 

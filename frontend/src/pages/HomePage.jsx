@@ -14,7 +14,7 @@ const HomePage = () => {
         const fetchData = async () => {
             setLoading(true)
             try {
-                const response = await fetch('http://localhost:3000/api/notes')
+                const response = await fetch(`${import.meta.env.VITE_API_URL}/api/notes/${id}`)
 
                 if (response.status === 429){
                     setIsRateLimited(true)
