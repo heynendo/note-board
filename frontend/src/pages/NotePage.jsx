@@ -3,6 +3,11 @@ import { useNavigate, useParams, Link } from "react-router"
 import toast from "react-hot-toast"
 
 const NotePage = () => {
+
+    const url = process.env.NODE_ENV !== "production" ?
+        "http://localhost:5001" :    
+        import.meta.env.VITE_API_URL
+
     const { id } = useParams()
     const [loading, setLoading] = useState(false)
     const [note, setNote] = useState({
@@ -15,7 +20,7 @@ const NotePage = () => {
     useEffect(() => {
         const getNote = async () => {
             try {
-                const response = await fetch(`${import.meta.env.VITE_API_URL}/api/notes/${id}`)
+                const response = await fetch(`${url}/api/notes/${id}`)
                 if (response.ok) {
                     const data = await response.json()
                     setNote({ title: data.title, content: data.content })
@@ -46,7 +51,7 @@ const NotePage = () => {
         e.preventDefault()
 
         try {
-            const response = await fetch(`http://localhost:3000/api/notes/${id}`, {
+            const response = await fetch(`${url}/api/notes/${id}`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(note)

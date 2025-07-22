@@ -6,6 +6,10 @@ import toast from "react-hot-toast"
 
 const HomePage = () => {
 
+    const url = process.env.NODE_ENV !== "production" ?
+        "http://localhost:5001" :    
+        import.meta.env.VITE_API_URL
+
     const [isRateLimited, setIsRateLimited] = useState(false)
     const [notes, setNotes] = useState([])
     const [loading, setLoading] = useState(true)
@@ -14,7 +18,8 @@ const HomePage = () => {
         const fetchData = async () => {
             setLoading(true)
             try {
-                const response = await fetch(`${import.meta.env.VITE_API_URL}/api/notes/${id}`)
+                console.log("Fetching from:", `${url}/api/notes`)
+                const response = await fetch(`${url}/api/notes`)
 
                 if (response.status === 429){
                     setIsRateLimited(true)
@@ -29,7 +34,7 @@ const HomePage = () => {
                 setIsRateLimited(false)
 
             } catch (e) {
-                console.error(e)
+                console.error("Error running getNotes", e)
                 toast.error("Failed to load notes")
             } finally {
                 setLoading(false)

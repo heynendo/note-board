@@ -3,11 +3,15 @@ import { useState } from "react"
 import plus from "../../public/plus.png"
 
 const NoteItem = ({note, onDelete}) => {
+    const url = process.env.NODE_ENV !== "production" ?
+        "http://localhost:5001" :    
+        import.meta.env.VITE_API_URL
+
     const [showNote, setShowNote] = useState(false)
 
     const deleteNote = async () => {
         try {
-            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/notes/${note._id}`, {
+            const response = await fetch(`${url}/api/notes/${note._id}`, {
                 method: 'DELETE',
             });
 

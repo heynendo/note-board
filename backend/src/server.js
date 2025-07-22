@@ -12,18 +12,18 @@ dotenv.config()
 
 //1. setup app server and port
 const app = express()
-const port = process.env.PORT 
+const port = process.env.PORT || 5001
 const __dirname = path.resolve()
 
-if(process.env.NODE_ENV !== "production"){
-    app.use(cors({
-        origin: "http://localhost:5173"
-    }))
-} else {
-    app.use(cors({
-        origin: "https://note-board-yvtd.onrender.com"
-    }))
-}
+const allowedOrigins = [
+  "http://localhost:5173",
+  process.env.VITE_API_URL,
+]
+
+app.use(cors({
+  origin: allowedOrigins,
+}))
+
 
 // middleware - will parse JSON bodies (req/res.body)
 //could not get title and content for notesController without this 
@@ -52,6 +52,6 @@ if(process.env.NODE_ENV === "production"){
 // if we connect to DB, then we can run server
 connectDB().then(() => {
     app.listen(port, () => {
-        console.log(`running on PORT: ${port}`)
+        console.log(`running on: ${allowedOrigins}`)
     })
 })

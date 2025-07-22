@@ -3,6 +3,11 @@ import { Link, useNavigate } from "react-router"
 import toast from "react-hot-toast"
 
 const CreatePage = () => {
+
+    const url = process.env.NODE_ENV !== "production" ?
+        "http://localhost:5001" :    
+        import.meta.env.VITE_API_URL
+    
     const [note, setNote] = useState({
         title: "",
         content: ""
@@ -21,7 +26,7 @@ const CreatePage = () => {
     const sendNote = async (e) =>{
         e.preventDefault()
         try{
-            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/notes` , {
+            const response = await fetch(`${url}/api/notes` , {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(note)
